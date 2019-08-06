@@ -1,13 +1,14 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h2 class="display-4">Burgers!</h2>
+    <h2 class="display-3">Burgers!</h2>
   </div>
 </div>
 
 <div class="container">
   <div class="d-flex flex-row">
-    <div class="d-flex justify-content-start">
-      <div class="card" style="width: 18rem;">
+    <div class="container">
+      <div class="d-flex justify-content-around"></div>
+      <div class="card">
         <h3 class="card-header">Burgers as yet undevoured!</h3>
         <div class="card-body">
           <ul class="list-group list-group-flush">
@@ -20,8 +21,9 @@
         </div>
       </div>
     </div>
-    <div class="d-flex justify-content-end">
-      <div class="card" style="width: 18rem;">
+    <div class="container">
+      <div class="d-flex justify-content-around"></div>
+      <div class="card">
         <h3 class="card-header">Burgers that have been devoured!</h3>
         <div class="card-body">
           <ul class="list-group list-group-flush">
@@ -34,26 +36,28 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
+    <div class="container">
+      <div class="justify-content-around">
+        <div class="card"></div>
+        <h3 class="card-header">Add a Burger</h3>
+        <div class="card-body">
+          <form class="create-form">
 
-<div class="card">
-  <h3 class="card-header">Add a Burger</h3>
-  <div class="card-body">
-    <form class="create-form">
+            <div class="form-group">
+              <label for="ca">Burger Name:</label>
+              <input type="text" id="ca" name="name">
+            </div>
 
-      <div class="form-group">
-        <label for="ca">Burger Name:</label>
-        <input type="text" id="ca" name="name">
+            <div class="form-group">
+              <label for="sleepy">Has been Consumed</label><br>
+              <input type="radio" name="devoured" value="1" checked> Devoured!<br>
+              <input type="radio" name="devoured" value="0"> Awaiting Consumption
+            </div>
+
+            <button type="submit" class="btn btn-outline-secondary" value="Add Burger">Add Burger</button>
+          </form>
+        </div>
       </div>
-
-      <div class="form-group">
-        <label for="sleepy">Has been Consumed</label><br>
-        <input type="radio" name="devoured" value="1" checked> Devoured!<br>
-        <input type="radio" name="devoured" value="0"> Awaiting Consumption
-      </div>
-
-      <button type="submit" class="btn btn-outline-secondary" value="Add Burger">Add Burger</button>
-    </form>
+    </div>
   </div>
 </div>
