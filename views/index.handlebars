@@ -34,7 +34,7 @@
 
     <div class="card">
       <h3 class="card-header" style="background-color:aqua;">Add a Burger</h3>
-      <div class="card-body" style="background-color: wheat">
+      <form  id="add-burger" class="card-body" style="background-color: wheat">
         <div class="form-group">
           <label for="ca">Burger Name:</label>
           <input type="text" id="ca" name="name">
@@ -44,8 +44,8 @@
           <input type="radio" name="devoured" value="1" checked> Devoured!<br>
           <input type="radio" name="devoured" value="0"> Awaiting Consumption
         </div>
-        <button type="submit" class="btn btn-outline-primary" value="Add Burger">Add Burger</button>
-      </div>
+        <button type="submit" id="submit"class="btn btn-outline-primary" value="Add Burger">Add Burger</button>
+      </form>
     </div>
   </div>
 </div>
