@@ -1,13 +1,23 @@
 
-var express = require('express');
+//var express = require('express');
 
-var router = express.Router();
+//var router = express.Router();
 
-var burger = require('../models/burger');
+//var burger = require('../models/burger');
+
+
+
+module.exports = {
+  renderBurgers : function(req,res){
+    res.render("index",{msg: "is anybody out there?"});
+  }
+};
+
+/*
 
 // Create all our routes and set up logic within those routes where required.
 router.get("/", function(req, res) {
-    burger.selectAll(function(data) {
+    burgers.selectAll(function(data) {
       var hbsObject = {
         burgers: data
       };
@@ -52,4 +62,4 @@ router.get("/", function(req, res) {
   
   
   // Export routes for server.js to use.
-  module.exports = router;
+  module.exports = router;*/
