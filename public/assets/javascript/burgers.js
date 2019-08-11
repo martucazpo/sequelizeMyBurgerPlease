@@ -1,6 +1,21 @@
-// Make sure we wait to attach our handlers until the DOM is fully loaded.
+// Make sure we wait to attach our handlers until the DOM is fully loaded
+ 
 
-$(function () {
+$(document).on("ready", function () {
+  
+
+  function getBurgers(res) {
+    $.get("/api/burgers", function(data) {
+      var hbsObject = {
+        burgers: data
+      };
+      console.log(hbsObject);
+     // res.render(hbsObject);
+    });
+  }
+
+getBurgers();
+
   $(document).on("click", "#change-devoured", function (event) {
     var id = $(this).data("id");
     var newdevoured = $(this).data("newdevoured");
@@ -23,7 +38,7 @@ $(function () {
     );
   });
 
-  $("#add-burger").on("submit",function (event) {
+  $("#add-burger").on("submit", function (event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
     console.log("hello");

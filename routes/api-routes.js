@@ -1,14 +1,21 @@
 var express = require('express');
 var router = express.Router();
-
+var getData = function(data){
+  return data.dataValues;
+};
 
 //module.exports = function (app) {
 
   var db = require("../models/");
 
   router.get("/", function(req, res) {
-    db.Burger.findAll({}).then(function (dbBurger) {
-      res.render("index", {burgers: dbBurger});
+    db.Burger.findAll({}).then(function (data) {
+     var hbsObject = {
+       burgers : data.map(getData)
+     };
+      res.render("index", hbsObject );
+      console.log(hbsObject);
+    
     });
   });
 
@@ -43,20 +50,23 @@ var router = express.Router();
       });
   });
 
-  router.put("/api/burgers", function (req, res) {
-    db.Burger.update({
-        devoured: req.body.devoured
-      }, {
-        where: {
-          id: req.body.id
+  router.put("/api/burgers/:id", function (req, res) {
+    var condition = "id = " + req.params.id;
+    console.log(condition);
+    console.log(req.body);
+    db.Burger.update(
+       req.body,
+      {
+        where: {id: req.params.id},
+      }).then(
+      function(result) {
+        if (result.changedRows == 0) {
+          // If no rows were changed, then the ID must not exist, so 404
+          console.log(result);
+          //return res.status(404).end();
         }
-      }).then(function (dBburger) {
-        res.json(dBburger);
-      })
-      .catch(function (err) {
-        // Whenever a validation or flag fails, an error is thrown
-        // We can "catch" the error to prevent it from being "thrown", which could crash our node app
-        res.json(err);
+        res.status(200).end();
+  
       });
   });
 
