@@ -1,7 +1,7 @@
 
 var express = require("express");
 
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 8000;
 
 var app = express();
 
@@ -18,15 +18,16 @@ app.use(express.json());
 // Set Handlebars.
 var exphbs = require("express-handlebars");
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+//app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.engine("handlebars", exphbs({ layoutsDir: "views/layouts", partialsDir: "views/partials/burgers", defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Import routes and give the server access to them.
-require("./routes/html-routes");
-require("./routes/api-routes")(app);
+var routes = require("./routes/api-routes");
+//routes = require("./routes/html-routes");
+app.use(routes);
 
-
-db.sequelize.sync().then(function() {
+db.sequelize.sync({ force: false }).then(function(res) {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });

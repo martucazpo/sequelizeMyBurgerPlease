@@ -1,29 +1,40 @@
-var db = require("../models");
+var express = require('express');
+var router = express.Router();
 
 
-module.exports = function (app) {
+//module.exports = function (app) {
 
-  app.get("/api/burgers", function (req, res) {
-    db.Burgers.findAll({}).then(function (dbBurgers) {
+  var db = require("../models/");
+
+  router.get("/", function(req, res) {
+    db.Burger.findAll({}).then(function (dbBurger) {
+      res.render("index", {burgers: dbBurger});
+    });
+  });
+
+
+  router.get("/api/burgers", function (req, res) {
+    //console.log('cats: ' + Burger);
+    db.Burger.findAll({}).then(function (dbBurger) {
       // We have access to the todos as an argument inside of the callback function
-      res.json(dbBurgers);
+      res.json(dbBurger);
       
     });
   });
 
 
   // The variables cols and vals are arrays.
-  app.post("/api/burgers", function (req, res) {
+  router.post("/api/burgers", function (req, res) {
     // create takes an argument of an object describing the item we want to
     // insert into our table. In this case we just we pass in an object with a text
     // and complete property (req.body)
-    db.Burgers.create({
+    db.Burger.create({
         name: req.body.name,
         devoured: req.body.devoured
       })
-      .then(function (dbBurgers) {
+      .then(function (dbBurger) {
         // We have access to the new todo as an argument inside of the callback function
-        res.json(dbBurgers);
+        res.json(dbBurger);
       })
       .catch(function (err) {
         // Whenever a validation or flag fails, an error is thrown
@@ -32,15 +43,15 @@ module.exports = function (app) {
       });
   });
 
-  app.put("/api/burgers", function (req, res) {
-    db.Burgers.update({
-        devoured: req.devoured
+  router.put("/api/burgers", function (req, res) {
+    db.Burger.update({
+        devoured: req.body.devoured
       }, {
         where: {
           id: req.body.id
         }
-      }).then(function (dBburgers) {
-        res.json(dBburgers);
+      }).then(function (dBburger) {
+        res.json(dBburger);
       })
       .catch(function (err) {
         // Whenever a validation or flag fails, an error is thrown
@@ -49,6 +60,6 @@ module.exports = function (app) {
       });
   });
 
-
-};
+module.exports = router;
+//};
 // Export the database functions for the controller (catsController.js).

@@ -3,9 +3,9 @@
     "username": "root",
     "password": "popsjuly1",
     "database": "burgers",
-    "host": "127.0.0.1",
+    "host": "localhost",
     "dialect": "mysql",
-    "operatorsAliases": null
+    "port": 3306
   },
   "test": {
     "username": "root",
@@ -13,7 +13,7 @@
     "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": null
+    "port": 3306
   },
   "production": {
     "username": "root",
@@ -21,6 +21,6 @@
     "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "operatorsAliases": null
+    "port": 3306
   }
 }
