@@ -20,7 +20,7 @@ module.exports = function(sequelize, DataTypes) {
   });
 
 
-  console.log('I\'m getting imported!!!!')
+  console.log('I\'m getting imported!!!!');
   return Burger;
 };
 
